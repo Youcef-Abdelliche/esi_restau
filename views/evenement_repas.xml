@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="evenement_form_view">
+        <field name="name">evenement.form</field>
+        <field name="model">evenement_repas.evenement</field>
+        <field name="arch" type="xml">
+            <form string="Evenement Form">
+                <sheet>
+                    <group>
+                        <field name="repasType"/>
+                        <field name="description"/>
+                        <field name="nbrPersonne"/>                          
+                        <field name="validate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   
+    <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="evenement_tree_view">
+            <field name="name">evenement.tree</field>
+            <field name="model">evenement_repas.evenement</field>
+            <field name="arch" type="xml">
+                <tree string="Evenement Tree">
+                    <field name="repasType"/>
+                    <field name="description"/>
+                    <field name="nbrPersonne"/>                          
+                    <field name="validate"/>                    
+                </tree>
+            </field>
+        </record>
+
+       <!-- <record model="ir.ui.view" id="course_search_view">
+            <field name="name">course.search</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record> --> 
+
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="evenement_list_action">
+            <field name="name">Evenements</field>
+            <field name="res_model">evenement_repas.evenement</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crée le premiere evenement 
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_evenement_menu" name="Evenement Repas"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="evenement_menu" name="Evenement Repas"
+                  parent="main_evenement_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="evenements_menu" name="Evenements" parent="evenement_menu"
+                  action="evenement_list_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+
+</odoo>

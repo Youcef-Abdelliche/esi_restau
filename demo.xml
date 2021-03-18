@@ -1,0 +1,11 @@
+<odoo>
+  
+ <record id="evenement_repas_event 1" model="evenement_repas.evenement">
+        <field name="name">Event 1</field>
+ </record>
+ <record id="evenement_repas_event 2" model="evenement_repas.evenement">
+        <field name="name">Event 2</field>
+ </record>
+
+
+</odoo>
