@@ -73,5 +73,100 @@
         <!-- Full id location:
              action="openacademy.course_list_action"
              It is not required when it is the same module -->
+             
+
+    <record model="ir.ui.view" id="local_form_view">
+        <field name="name">local.form</field>
+        <field name="model">evenement_repas.locaux</field>
+        <field name="arch" type="xml">
+            <form string="Evenement Form">
+                <sheet>
+                    <group>
+                        <field name="localName"/>
+                        <field name="disponible"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+   
+    <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="local_tree_view">
+            <field name="name">evenement.tree</field>
+            <field name="model">evenement_repas.locaux</field>
+            <field name="arch" type="xml">
+                <tree string="Local Tree">
+                    <field name="localName"/>
+                    <field name="disponible"/>                    
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="local_list_action">
+            <field name="name">Locaux</field>
+            <field name="res_model">evenement_repas.locaux</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crée le premiere local 
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="local_menu" name="Locaux"
+                  parent="evenement_menu"
+                  action="local_list_action"/>
+                  
+
+    <record model="ir.ui.view" id="participent_form_view">
+        <field name="name">participant.form</field>
+        <field name="model">evenement_repas.participant</field>
+        <field name="arch" type="xml">
+            <form string="Participant Form">
+                <sheet>
+                    <group>
+                        <field name="firstName"/>
+                        <field name="lastName"/>
+                        <field name="email"/>                          
+                        <field name="phone"/>
+                        <field name="ressources"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   
+    <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="participent_tree_view">
+            <field name="name">participent.tree</field>
+            <field name="model">evenement_repas.participant</field>
+            <field name="arch" type="xml">
+                <tree string="Participant Tree">
+                        <field name="firstName"/>
+                        <field name="lastName"/>
+                        <field name="email"/>                          
+                        <field name="phone"/>
+                        <field name="ressources"/>                    
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="participant_list_action">
+            <field name="name">Participants</field>
+            <field name="res_model">evenement_repas.participant</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crée le premiere participant 
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="participants_menu" name="Participants"
+                  parent="evenement_menu"
+                  action="participant_list_action"/>
 
 </odoo>
