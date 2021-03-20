@@ -1,4 +1,6 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_evenement_repas_locaux,access_evenement_repas_locaux,model_evenement_repas_locaux,,1,1,1,1
+access_evenement_repas_locaux,access_evenement_repas_locaux,model_evenement_repas_locaux,responsable,1,1,1,1
 access_evenement_repas_evenement,access_evenement_repas_evenement,model_evenement_repas_evenement,,1,1,1,1
-access_evenement_repas_participant,access_evenement_repas_participant,model_evenement_repas_participant,,1,1,1,1
+access_evenement_repas_participant,access_evenement_repas_participant,model_evenement_repas_participant,responsable,1,1,1,1
+access_evenement_repas_ressource,access_evenement_repas_ressource,model_evenement_repas_ressource,,1,1,1,1
+

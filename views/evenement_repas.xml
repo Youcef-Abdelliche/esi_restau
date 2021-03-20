@@ -8,11 +8,27 @@
             <form string="Evenement Form">
                 <sheet>
                     <group>
-                        <field name="repasType"/>
-                        <field name="description"/>
-                        <field name="nbrPersonne"/>                          
-                        <field name="validate"/>
+                        <group>
+                            <field name="titre"/>
+                            <field name="repasType"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="nbrPersonne"/>                          
+                            <field name="validate"/>
+                            <field name="organisateur"/>
+                            <field name="organisateur_id"/>      
+                        </group>                  
                     </group>
+                    <notebook>
+                        <page string="Ressources">
+                            <field name="ressources_ids">
+                                    <tree editable="bottom">
+                                        <field name="ressource_type"/>
+                                    </tree>
+                                </field>
+                        </page> 
+                   </notebook> 
                 </sheet>
             </form>
         </field>
@@ -25,30 +41,17 @@
             <field name="model">evenement_repas.evenement</field>
             <field name="arch" type="xml">
                 <tree string="Evenement Tree">
+                    <field name="titre"/>
                     <field name="repasType"/>
                     <field name="description"/>
-                    <field name="nbrPersonne"/>                          
-                    <field name="validate"/>                    
+                    <field name="nbrPersonne"/>
+                    <field name="validate"/> 
+                    <field name="organisateur"/>                           
+                                       
                 </tree>
             </field>
         </record>
 
-       <!-- <record model="ir.ui.view" id="course_search_view">
-            <field name="name">course.search</field>
-            <field name="model">openacademy.course</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name"/>
-                    <field name="description"/>
-                </search>
-            </field>
-        </record> --> 
-
-        <!-- window action -->
-        <!--
-            The following tag is an action definition for a "window action",
-            that is an action opening a view or a set of views
-        -->
         <record model="ir.actions.act_window" id="evenement_list_action">
             <field name="name">Evenements</field>
             <field name="res_model">evenement_repas.evenement</field>
@@ -128,11 +131,19 @@
             <form string="Participant Form">
                 <sheet>
                     <group>
-                        <field name="firstName"/>
-                        <field name="lastName"/>
-                        <field name="email"/>                          
-                        <field name="phone"/>
-                        <field name="ressources"/>
+                        <group>
+                            <field name="firstName"/>
+                            <field name="lastName"/>
+                            <field name="evenement_id"/>
+                        </group>
+                        <group>
+                            <field name="email"/>                          
+                            <field name="phone"/>
+                        </group>
+
+                            <group><field name="ressource_ids" string="Type de ressource"/></group>
+                           <group> <field name="ressource_nom" string="ressource"/></group>
+                        
                     </group>
                 </sheet>
             </form>
@@ -150,7 +161,8 @@
                         <field name="lastName"/>
                         <field name="email"/>                          
                         <field name="phone"/>
-                        <field name="ressources"/>                    
+                        <field name="evenement_id"/>
+                        <field name="ressource_ids"/>                   
                 </tree>
             </field>
         </record>
@@ -160,7 +172,7 @@
             <field name="res_model">evenement_repas.participant</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Crée le premiere participant 
+                <p class="o_view_nocontent_smiling_face">Inscrire à un événement
                 </p>
             </field>
         </record>
@@ -169,4 +181,31 @@
                   parent="evenement_menu"
                   action="participant_list_action"/>
 
+
+
+        <record model="ir.ui.view" id="ressource_tree_view">
+            <field name="name">ressource.tree</field>
+            <field name="model">evenement_repas.ressource</field>
+            <field name="arch" type="xml">
+                <tree string="Ressource Tree">
+                        <field name="ressource_type"/>                 
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ressource_list_action">
+            <field name="name">Ressources</field>
+            <field name="res_model">evenement_repas.ressource</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crée la première ressource
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="ressources_menu" name="Ressources"
+                  parent="evenement_menu"
+                  action="ressource_list_action"/>
+    
+        
 </odoo>
